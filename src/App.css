@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+#canvas-container {
+  background: #313131;
+  width: 800px;
+  height: 500px;
+}
