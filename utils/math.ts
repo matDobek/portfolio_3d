@@ -1,5 +1,5 @@
-export function randInSphere(n: number, r: number): number[][] {
-  const genPoint = function() {
+export function randInSphere(n: number, r: number): Float32Array {
+  const genVector = function(): number[] {
     return [
       Math.random() * r,
       Math.random() * r,
@@ -7,23 +7,27 @@ export function randInSphere(n: number, r: number): number[][] {
     ];
   }
 
-  let points: number[][] = Array.from({length: n}, () => {
-    let point: number[];
+  const isInSphere = function(vec: number[], r: number): boolean {
+    const result = vec
+      .map((x) => x*x )
+      .reduce((acc, x) => acc + x)
+
+    return r*r > result;
+  }
+
+  const result = new Float32Array(n*3);
+
+  for(let i = 0; i <= result.length - 3; i += 3) {
+    let vec: number[];
 
     do
-      point = genPoint();
-    while ( !isInSphere(point, r) );
+      vec = genVector();
+    while( !isInSphere(vec, r) );
 
-    return point;
-  });
+    result[i] = vec[0];
+    result[i+1] = vec[1];
+    result[i+2] = vec[2];
+  }
 
-  return points;
-}
-
-function isInSphere(point: number[], r: number): boolean {
-  const result = point
-    .map((x) => x*x )
-    .reduce((acc, x) => acc + x)
-
-  return r*r > result;
+  return result;
 }
