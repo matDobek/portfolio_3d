@@ -1,9 +1,11 @@
 export function randInSphere(n: number, r: number): Float32Array {
   const genVector = function(): number[] {
+    const genSymbol = function() { return Math.random() > 0.5 ? 1 : -1; }
+
     return [
-      Math.random() * r,
-      Math.random() * r,
-      Math.random() * r,
+      Math.random() * r * genSymbol(),
+      Math.random() * r * genSymbol(),
+      Math.random() * r * genSymbol(),
     ];
   }
 
