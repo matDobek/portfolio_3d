@@ -1,4 +1,4 @@
-export function randInSphere(n: number, r: number): number[] {
+export function randInSphere(n: number, r: number): number[][] {
   const genPoint = function() {
     return [
       Math.random() * r,
@@ -7,7 +7,7 @@ export function randInSphere(n: number, r: number): number[] {
     ];
   }
 
-  let points: number[] = Array.from({length: n}, () => {
+  let points: number[][] = Array.from({length: n}, () => {
     let point: number[];
 
     do
